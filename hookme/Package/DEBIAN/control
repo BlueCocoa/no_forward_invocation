@@ -1,0 +1,17 @@
+Package: com.0xbbc.hookme
+Name: hookme
+Version: 0.1-1
+Description: 
+Section: System
+Depends: firmware (>= 5.0)
+Conflicts: 
+Replaces: 
+Priority: optional
+Architecture: iphoneos-arm
+Author: BlueCocoa
+dev: 
+Homepage: 
+Depiction: 
+Maintainer: 
+Icon: 
+
