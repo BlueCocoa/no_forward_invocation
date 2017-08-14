@@ -20,7 +20,7 @@ static jmp_buf protectionJMP;
 - (void)someImportantMethod:(id)arg;
 
 // 取一个有迷惑性的方法名
-- (void)aConfusionMethodName:(id)arg, ...;
+- (void)aConfusionMethodName:(id)arg, ... NS_REQUIRES_NIL_TERMINATION;
 
 @end
 
@@ -57,9 +57,9 @@ static void inline protection() {
     IMP target = method_getImplementation(class_getInstanceMethod([ProtectedClass class], NSSelectorFromString(@"aConfusionMethodName:")));
     
     // 增加一个 int 类型的参数作为标记
-    typedef void(*targetMethodImplmentation)(id, SEL, id, /* magic */ int);
+    typedef void(*targetMethodImplmentation)(id, SEL, id, /* magic int */...);
     id obj = [[ProtectedClass alloc] init];
-    ((targetMethodImplmentation)target)(obj, NSSelectorFromString(@"aConfusionMethodName:"), nil, 1);
+    ((targetMethodImplmentation)target)(obj, NSSelectorFromString(@"aConfusionMethodName:"), nil, 1, nil);
 }
 
 @implementation ViewController
